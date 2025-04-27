@@ -14,6 +14,22 @@
     max-width: 50px;
 }
 
+#img-pokemon-detalle{
+    max-height: fit-content;
+    border: #1e1f22 5px solid;
+    border-radius: 25%;
+}
+
+#img-tipo-detalle{
+    width: fit-content;
+    height: fit-content;
+    scale: 1.35;
+}
+
+#descripcion{
+    background-color: #f2f2f2;
+}
+
 @media (min-width: 991.98px) {
     #navbarNavAltMarkup{
         max-width: fit-content;
