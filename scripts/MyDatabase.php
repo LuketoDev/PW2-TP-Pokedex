@@ -8,7 +8,7 @@ class MyDatabase
     {
         if ($localhost === null && $username === null && $password === null && $database === null){
 
-            $config = parse_ini_file('./db/database.ini');
+            $config = parse_ini_file(__DIR__.'/../db/database.ini');
 
             $this->database = new mysqli(
                 $config['host'],
