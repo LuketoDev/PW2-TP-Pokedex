@@ -9,11 +9,6 @@ $database = new MyDatabase();
 // Obtener la URL de la página anterior desde el encabezado Referer
 $pagina_anterior = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '../index.php';
 
-
-/**
- * @param $pagina_anterior
- * @return mixed|string
- */
 function agregarErrorLoginPorGet($pagina_anterior)
 {
 //Busca la posición de la primera aparición de un texto (needle) dentro de otro (haystack).
@@ -31,7 +26,7 @@ if($_POST["username"] != "" && $_POST["password"] != ""){
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    $user = $database->query("SELECT * FROM administrador WHERE username = '$username' AND password = '$password'");
+    $user = $database->selectQuery("SELECT * FROM administrador WHERE username = '$username' AND password = '$password'");
 
     if(!empty($user)){
         $_SESSION["dbId"] = $user[0]["id"];

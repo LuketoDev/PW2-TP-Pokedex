@@ -16,11 +16,11 @@ function cargarTabla(){
         $query = "SELECT * FROM pokemon WHERE nombre = '$nombre'";
     }else $query = "SELECT * FROM pokemon";
 
-    $pokemonsCargados = $database->query($query);
+    $pokemonsCargados = $database->selectQuery($query);
     $tablaHTML='';
 
     if (count($pokemonsCargados) === 0){ // si la query no encontro nada, mostrar un error y abajo la tabla completa de pokemons
-        $pokemonsCargados = $database->query("SELECT * FROM pokemon");
+        $pokemonsCargados = $database->selectQuery("SELECT * FROM pokemon");
         $tablaHTML .= "<h2 class='alert alert-danger text-center'>Pokemon no encontrado</h2>";
     }
 

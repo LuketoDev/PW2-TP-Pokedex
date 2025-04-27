@@ -8,7 +8,7 @@ function cargarDetallePokemon(){
 
         $id = $_GET["id"];
         $database = new MyDatabase();
-        $pokemon = $database->query("SELECT * FROM pokemon WHERE id = '$id'");
+        $pokemon = $database->selectQuery("SELECT * FROM pokemon WHERE id = '$id'");
 
         if(count($pokemon) === 0)
             return "<h2 class='alert alert-danger text-center'>No se encontro ningun pokemon con ese id en nuestra pokedex<br>(puede darlo de alta si es admin)</h2>";

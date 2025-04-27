@@ -1,3 +1,31 @@
+<?php
+
+function evaluarRegistro(){
+
+    if(isset($_GET['registro'])){
+
+        $registro = $_GET['registro'];
+
+        $msjHTML='';
+
+        switch($registro){
+            case 'incompleto':
+                $msjHTML.="<div class='alert alert-danger text-center'>Ingrese todos los datos porfavor</div>";
+                break;
+            case 'correcto':
+                $msjHTML.="<div class='alert alert-success text-center'>Registro Exitoso!<br>Ahora es administrador y puede <a href='index.php'>Loguearse</a></div>";
+                break;
+            case 'incorrecto':
+                $msjHTML.="<div class='alert alert-danger text-center'>Registro erroneo, ese nombre de usuario ya esta ocupado por otro administrador</div>";
+                break;
+            default:
+                break;
+        }
+        return $msjHTML;
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,12 +50,17 @@
 <main role="main" class="container-fluid container-lg w-100">
 
     <div class = "container-fluid">
-        <div id="register-box"  class=" w-100 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 mt-5">
+        <div id="register-box"  class=" m-auto col-sm-10 col-lg-7 mt-5">
 
-            <?php
-                echo 'HACER REGISTROOO!';
-             ?>
-
+            <form id="form-registro" method="POST" action="./scripts/procesar-registro.php" class="d-flex flex-column align-items-center gap-4 m-auto w-75 text-center p-3 p-lg-5 rounded-3 border border-secondary">
+                <h2>Formulario de registro Pokedex!</h2>
+                <input class="w-100" type="text" name="username" placeholder="Ingrese un nombre de usuario">
+                <input class="w-100" type="password" name="password" placeholder="Ingrese una contrasenia">
+                <input class="w-100 btn btn-outline-success p-lg-3" type="submit" value="Registrarse">
+                <?php
+                    echo evaluarRegistro();
+                ?>
+            </form>
         </div>
     </div>
 </main>

@@ -21,10 +21,15 @@ class MyDatabase
         }
     }
 
-    public function query($query)
+    public function selectQuery($query)
     {
         $datos = $this->database->query($query);
         return $datos->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function executeQuery($query)
+    {
+        return $this->database->query($query);
     }
 
     public function __destruct(){
