@@ -1,0 +1,21 @@
+#nav{
+    background-color: #ffc26d;
+}
+
+#logotipo-principal{
+    width: 4.5rem;
+}
+
+#logotipo-pokedex {
+    width: 12rem;
+}
+
+.img-pokemon{
+    max-width: 50px;
+}
+
+@media (min-width: 991.98px) {
+    #navbarNavAltMarkup{
+        max-width: fit-content;
+    }
+}
