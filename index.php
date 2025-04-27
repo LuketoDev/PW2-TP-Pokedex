@@ -22,10 +22,10 @@ include("./fragmentos/header.php");
 
     <main role="main" class="container-fluid container-lg">
         <div class="container-fluid mt-5">
-            <form class="d-flex justify-content-center" role="search">
+            <form action="./scripts/procesar-busqueda.php" method="GET" class="d-flex justify-content-center" role="search">
                 <div class="row w-100">
                     <div class="col-12 col-md-7 col-lg-8">
-                        <input class="form-control p-lg-3" type="search" placeholder="Ingrese nombre, tipo o numero de pokemon" aria-label="Search">
+                        <input class="form-control p-lg-3" type="search" placeholder="Ingrese nombre, tipo o numero de pokemon" aria-label="Search" name="busqueda">
                     </div>
                     <div class="col-6 col-md-5 col-lg-4 m-auto mt-2 mt-md-0">
                         <button class="btn btn-outline-primary w-100 p-lg-3" type="submit">Quien es este pokemon?</button>
@@ -37,8 +37,6 @@ include("./fragmentos/header.php");
         <div class = "container-fluid">
             <div id="tabla-box"  class="w-100 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 mt-5">
 
-
-                <h1 class="text-center">Lista de Pokemons</h1>
                 <?php
                     echo cargarTabla();
                 ?>
