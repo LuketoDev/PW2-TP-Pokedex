@@ -27,7 +27,7 @@ echo encabezado();
         <div id="pokemon-detalle-box"  class="d-flex flex-wrap justify-content-evenly w-100 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 mt-5">
 
             <?php
-            echo cargarDetallePokemon();
+                echo cargarDetallePokemon();
             ?>
 
         </div>

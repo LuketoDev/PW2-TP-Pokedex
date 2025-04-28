@@ -1,5 +1,4 @@
 <?php
-
 function evaluarRegistro(){
 
     if(isset($_GET['registro'])){
