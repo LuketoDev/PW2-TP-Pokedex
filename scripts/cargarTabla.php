@@ -8,14 +8,14 @@ function cargarTabla(){
 
     if (isset($_GET['tipo'])){
         $tipo = $_GET['tipo'];
-        $query = "SELECT * FROM pokemon WHERE tipo = '$tipo'";
+        $query = "SELECT * FROM pokemon WHERE tipo = '$tipo' ORDER BY identificador_numerico";
     }else if (isset($_GET['identificador_numerico'])){
         $identificador_numerico = $_GET['identificador_numerico'];
         $query = "SELECT * FROM pokemon WHERE identificador_numerico = '$identificador_numerico'";
     }else if (isset($_GET['nombre'])){
         $nombre = $_GET['nombre'];
         $query = "SELECT * FROM pokemon WHERE nombre = '$nombre'";
-    }else $query = "SELECT * FROM pokemon";
+    }else $query = "SELECT * FROM pokemon ORDER BY identificador_numerico";
 
     $pokemonsCargados = $database->selectQuery($query);
     $tablaHTML='';
@@ -25,7 +25,7 @@ function cargarTabla(){
     $botonAltaAdminHTML='';
 
     if (count($pokemonsCargados) === 0){ // si la query no encontro nada, mostrar un error y abajo la tabla completa de pokemons
-        $pokemonsCargados = $database->selectQuery("SELECT * FROM pokemon");
+        $pokemonsCargados = $database->selectQuery("SELECT * FROM pokemon ORDER BY identificador_numerico");
         $tablaHTML .= "<h2 class='alert alert-danger text-center'>Pokemon no encontrado</h2>";
     }
 
