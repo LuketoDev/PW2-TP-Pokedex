@@ -14,7 +14,7 @@ function evaluarAlta(){
                 $msjHTML.="<div class='alert alert-danger text-center'>Ingrese todos los datos porfavor</div>";
                 break;
             case 'completa':
-                $msjHTML.="<div class='alert alert-success text-center'>Alta Exitosa!<br>Ahora se puede ver el pokemon en la <a href='index.php'>tabla</a></div>";
+                $msjHTML.="<div class='alert alert-success text-center'>Alta Exitosa!<br>Ahora se puede ver el pokemon en la <a href='index.php'>pokedex</a></div>";
                 break;
             case 'nombre-repetido':
                 $msjHTML.="<div class='alert alert-danger text-center'>Registro erroneo, ese nombre de pokemon ya esta ocupado por otro </div>";

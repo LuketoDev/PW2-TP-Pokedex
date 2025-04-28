@@ -1,6 +1,14 @@
 <?php
 include("./scripts/cargarTabla.php");
 include("./fragmentos/header.php");
+
+function informarBaja(){
+    if(isset($_GET['baja'])) {
+        $baja = $_GET['baja'];
+        return "<div class='alert alert-success text-center mt-4'>Baja Exitosa!<br>El pokemon $baja fue eliminado de la pokedex</div>";
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,33 +42,16 @@ include("./fragmentos/header.php");
             </form>
         </div>
 
+        <?php
+            echo informarBaja();
+        ?>
+
         <div class = "container-fluid">
             <div id="tabla-box"  class="w-100 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 mt-5">
 
                 <?php
                     echo cargarTabla();
                 ?>
-            </div>
-        </div>
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <div>
-                    Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
-                </div>
-                <div class="dropdown mt-3">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                        Dropdown button
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </div>
             </div>
         </div>
     </main>
