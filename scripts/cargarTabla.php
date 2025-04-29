@@ -36,14 +36,15 @@ function cargarTabla(){
     }
 
 
-
     foreach ($pokemonsCargados as $pokemon){
 
+
         if(isset($_SESSION['dbId'])){
+            $atributoOnClick = 'onclick="return confirm(\'¿Estás seguro que quieres dar de baja al Pokémon '.$pokemon['nombre'].'?\')"'; // escapo comillas simples porque sino piensa que voy a citar otra variable
             $botonesBajaYModificacionAdminHTML = '<th>
                                                 <div class="d-flex flex-column flex-md-row justify-content-evenly  pt-1">
-                                                    <a href="modificacion-pokemon.php?id='.$pokemon["id"].'" class="btn btn-outline-primary p-1 p-md-2">Modificacion</a>
-                                                    <a href="./scripts/procesar-baja.php?id='.$pokemon["id"].'" class="btn btn-outline-primary p-1 p-md-2 mt-2 mt-md-0">Baja</a>
+                                                    <a href="./modificar-pokemon.php?id='.$pokemon["id"].'" class="btn btn-outline-primary p-1 p-md-2">Modificacion</a>
+                                                    <a href="./scripts/procesar-baja.php?id='.$pokemon["id"].'" class="btn btn-outline-primary p-1 p-md-2 mt-2 mt-md-0" '.$atributoOnClick.'>Baja</a>
                                                 </div>
                                                </th>';
         }

@@ -83,7 +83,7 @@ echo encabezado();
 <main role="main" class="container-fluid container-lg w-100">
 
     <div class = "container-fluid">
-        <div id="pokemon-detalle-box"  class="d-flex flex-wrap justify-content-evenly w-100 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 mt-5">
+        <div id="pokemon-form-box"  class="d-flex flex-wrap justify-content-evenly w-100 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 mt-5">
 
             <?php
             echo cargarFormularioParaAdmins();
