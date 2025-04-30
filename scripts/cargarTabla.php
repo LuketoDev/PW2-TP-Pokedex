@@ -1,6 +1,6 @@
 <?php
 
-include_once ("MyDatabase.php");
+require_once ("MyDatabase.php");
 function cargarTabla(){
     $database = new MyDatabase('localhost:3307', 'root', '', 'pokedex');
 

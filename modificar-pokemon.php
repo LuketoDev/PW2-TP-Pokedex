@@ -1,6 +1,6 @@
 <?php
-include("./fragmentos/header.php");
-include("./scripts/cargarPokemon.php");
+require_once("./fragmentos/header.php");
+require_once("./scripts/cargarPokemon.php");
 
 function evaluarModificacion(){
 

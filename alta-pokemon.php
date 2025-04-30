@@ -1,5 +1,5 @@
 <?php
-include("./fragmentos/header.php");
+require_once("./fragmentos/header.php");
 
 function evaluarAlta(){
 

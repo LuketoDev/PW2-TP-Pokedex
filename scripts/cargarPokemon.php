@@ -1,6 +1,6 @@
 <?php
 
-include "MyDatabase.php";
+require_once "MyDatabase.php";
 function cargarPokemon($idPokemon){
 
     $database = new MyDatabase();

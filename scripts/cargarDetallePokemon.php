@@ -1,5 +1,5 @@
 <?php
-include_once('MyDatabase.php');
+require_once('MyDatabase.php');
 function cargarDetallePokemon(){
 
     if(!isset($_GET["id"]))

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'MyDatabase.php';
+require_once 'MyDatabase.php';
 
 
 if (isset($_SESSION['dbId'])){

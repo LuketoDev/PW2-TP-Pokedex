@@ -1,6 +1,6 @@
 <?php
 
-include 'MyDatabase.php';
+require_once 'MyDatabase.php';
 
 session_start();
 

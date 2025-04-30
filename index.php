@@ -1,6 +1,6 @@
 <?php
-include("./scripts/cargarTabla.php");
-include("./fragmentos/header.php");
+require_once("./scripts/cargarTabla.php");
+require_once("./fragmentos/header.php");
 
 function informarBaja(){
     if(isset($_GET['baja'])) {

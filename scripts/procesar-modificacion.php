@@ -1,5 +1,5 @@
 <?php
-include 'MyDatabase.php';
+require_once 'MyDatabase.php';
 
 $database = new MyDatabase();
 

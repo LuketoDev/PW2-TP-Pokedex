@@ -1,7 +1,7 @@
 <?php
-include("./scripts/cargarTabla.php");
-include("./scripts/cargarDetallePokemon.php");
-include("./fragmentos/header.php");
+require_once("./scripts/cargarTabla.php");
+require_once("./scripts/cargarDetallePokemon.php");
+require_once("./fragmentos/header.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
