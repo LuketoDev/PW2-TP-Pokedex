@@ -1,4 +1,5 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'].'/TP-Pokedex/configRutas.php';
 require_once("./fragmentos/header.php");
 
 function evaluarAlta(){
@@ -36,7 +37,7 @@ function evaluarAlta(){
 }
 function cargarFormularioParaAdmins(){
     if (isset($_SESSION['dbId'])){
-        return '<form id="form-alta-pokemon" method="POST" action="./scripts/procesar-alta.php" enctype="multipart/form-data" class="d-flex flex-column align-items-center gap-4 m-auto w-75 text-center p-3 p-lg-5 rounded-3 border border-secondary">
+        return '<form id="form-alta-pokemon" method="POST" action="'.BASE_URL.'/scripts/procesar-alta.php" enctype="multipart/form-data" class="d-flex flex-column align-items-center gap-4 m-auto w-75 text-center p-3 p-lg-5 rounded-3 border border-secondary">
                 <h2>Formulario de ALTA para pokemon en la Pokedex!</h2>
                 <input class="w-75 p-2" type="text" name="nombre" placeholder="Ingrese el nombre del pokemon">
                 <input class="w-75 p-2" type="number" name="identificador_numerico" placeholder="Ingrese el numero de pokemon">

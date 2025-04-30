@@ -1,6 +1,6 @@
 <?php
 
-
+require_once $_SERVER['DOCUMENT_ROOT'].'/TP-Pokedex/configRutas.php';
 require_once 'MyDatabase.php';
 
 $database = new MyDatabase();
@@ -36,22 +36,22 @@ if ($estanTodosLosDatos
     else if ($esImagen === false) $parametroError.="img-error";
 
     if ($parametroError !== ''){ // si hay error entonces recargar pagina con error
-        header("Location: ../alta-pokemon.php?alta=".$parametroError);
+        header("Location: ".BASE_URL."scripts/alta-pokemon.php?alta=".$parametroError);
         exit();
     }
 
     // subimos imagen
     $nuevoNombre = pathinfo($_FILES["imagen"]['name'], PATHINFO_FILENAME).'_'.time().'.png'; // le agrego el tiempo actual para que no se haya conflicto por si se sube alguna con mismo nombre
-    $destino = '../imagenes/pokemon/'.$nuevoNombre;
+    $destino = $_SERVER['DOCUMENT_ROOT'].'/TP-Pokedex/imagenes/pokemon/'.$nuevoNombre;
     move_uploaded_file($archivoTemporal, $destino);
 
     // hacemos el insert en la tabla
     $database->executeQuery("INSERT INTO pokemon (nombre, identificador_numerico, tipo, imagen, descripcion) VALUES ('$nombre', '$identificador_numerico', '$tipo', 'imagenes/pokemon/$nuevoNombre', '$descripcion')");
 
-    header('Location: ../alta-pokemon.php?alta=completa');
+    header('Location: '.BASE_URL.'alta-pokemon.php?alta=completa');
     exit();
 
 } else {
-    header('Location: ../alta-pokemon.php?alta=incompleta');
+    header('Location: '.BASE_URL.'alta-pokemon.php?alta=incompleta');
     exit();
 }

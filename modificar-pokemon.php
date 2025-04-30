@@ -1,4 +1,5 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'].'/TP-Pokedex/configRutas.php';
 require_once("./fragmentos/header.php");
 require_once("./scripts/cargarPokemon.php");
 
@@ -40,7 +41,7 @@ function cargarFormularioParaAdmins(){
 
         if (!isset($_GET['id'])) return "<h2 class='alert alert-danger text-center'>No eligio ningun pokemon a modificar</h2>";
 
-        return '<form id="form-modificacion-pokemon" method="POST" action="./scripts/procesar-modificacion.php?id='.$_GET['id'].'" enctype="multipart/form-data" class="d-flex flex-column align-items-center m-auto w-100 w-md-75 text-center p-3 p-lg-4 mb-3 rounded-3 border border-secondary">
+        return '<form id="form-modificacion-pokemon" method="POST" action="'.BASE_URL.'/scripts/procesar-modificacion.php?id='.$_GET['id'].'" enctype="multipart/form-data" class="d-flex flex-column align-items-center m-auto w-100 w-md-75 text-center p-3 p-lg-4 mb-3 rounded-3 border border-secondary">
                 <h2>Formulario de MODIFICACION de pokemon en la Pokedex!</h2>
                 
                 <div class="row">

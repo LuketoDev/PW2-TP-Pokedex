@@ -1,4 +1,6 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'].'/TP-Pokedex/configRutas.php';
+
 require_once('MyDatabase.php');
 function cargarDetallePokemon(){
 
@@ -16,12 +18,12 @@ function cargarDetallePokemon(){
 
         return '<div class="row">
                     <div class="col-12 col-md-5 d-flex justify-content-center">
-                        <img id="img-pokemon-detalle" class="w-100 w-md-50 w-lg-25" src="'.$pokemon[0]["imagen"].'">
+                        <img id="img-pokemon-detalle" class="w-100 w-md-50 w-lg-25" src="'.BASE_URL.$pokemon[0]["imagen"].'">
                     </div>
                     <div class="col-12 col-md-7 d-flex justify-content-center pt-4 pt-md-2">
                         <div class="ms-md-5 w-100">
                             <div class="d-flex flex-wrap align-items-center ms-3">
-                              <img id="img-tipo-detalle" src="./imagenes/tipo/'.strtolower($pokemon[0]["tipo"]).'.png">
+                              <img id="img-tipo-detalle" src="'.BASE_URL.'imagenes/tipo/'.strtolower($pokemon[0]["tipo"]).'.png">
                               <h2 class="ms-4">'.$pokemon[0]["identificador_numerico"].' '.$pokemon[0]["nombre"].'</h2>
                             </div>
                             <p id="descripcion" class="w-100 mt-2 p-2 rounded-2">'. htmlspecialchars($pokemon[0]["descripcion"]).'</p>

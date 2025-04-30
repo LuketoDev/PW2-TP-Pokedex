@@ -1,9 +1,12 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'].'/TP-Pokedex/configRutas.php';
 require_once 'MyDatabase.php';
 
 $database = new MyDatabase();
 
 $id = $_GET['id'];
+
+// pasar a variables boolean
 
 $hayAlgunDato = (isset($_POST["nombre"]) && trim($_POST["nombre"]) !== '') ||
     (isset($_POST["identificador_numerico"]) && trim($_POST["identificador_numerico"]) !== '') ||
@@ -21,7 +24,7 @@ if ( $hayAlgunDato ) {
             $database->executeQuery("UPDATE pokemon SET nombre = '$nombre' WHERE id = $id");
         }
         else{
-            header('Location: ../modificar-pokemon.php?id='.$id.'&modificar=nombre-repetido');
+            header('Location: '.BASE_URL.'modificar-pokemon.php?id='.$id.'&modificar=nombre-repetido');
             exit();
         }
     }
@@ -33,7 +36,7 @@ if ( $hayAlgunDato ) {
             $database->executeQuery("UPDATE pokemon SET identificador_numerico = '$identificador_numerico' WHERE id = $id");
         }
         else{
-            header('Location: ../modificar-pokemon.php?id='.$id.'&modificar=numero-repetido');
+            header('Location: '.BASE_URL.'modificar-pokemon.php?id='.$id.'&modificar=numero-repetido');
             exit();
         }
     }
@@ -45,7 +48,7 @@ if ( $hayAlgunDato ) {
             $database->executeQuery("UPDATE pokemon SET tipo = '$tipo' WHERE id = $id");
         }
         else{
-            header('Location: ../modificar-pokemon.php?id='.$id.'&modificar=tipo-incorrecto');
+            header('Location: '.BASE_URL.'modificar-pokemon.php?id='.$id.'&modificar=tipo-incorrecto');
             exit();
         }
     }
@@ -64,25 +67,26 @@ if ( $hayAlgunDato ) {
 
             // borro imagen anterior
             $imagenAnterior = $database->selectQuery("SELECT imagen FROM pokemon WHERE id = $id");
-            if (file_exists('../'.$imagenAnterior[0]['imagen'])) unlink('../'.$imagenAnterior[0]['imagen']);
+            if (file_exists($_SERVER['DOCUMENT_ROOT'].'/Pokedex-TP/'.$imagenAnterior[0]['imagen']))
+                unlink($_SERVER['DOCUMENT_ROOT'].'/Pokedex-TP/'.$imagenAnterior[0]['imagen']);
 
             //subo la nueva
             $nuevoNombre = pathinfo($_FILES["imagen"]['name'], PATHINFO_FILENAME) . '_' . time() . '.png'; // le agrego el tiempo actual para que no se haya conflicto por si se sube alguna con mismo nombre
-            $destino = '../imagenes/pokemon/' . $nuevoNombre;
+            $destino = $_SERVER['DOCUMENT_ROOT'].'/TP-Pokedex/imagenes/pokemon/'. $nuevoNombre;
             move_uploaded_file($archivoTemporal, $destino);
 
             $database->executeQuery("UPDATE pokemon SET imagen = 'imagenes/pokemon/$nuevoNombre' WHERE id = $id");
         }
         else{
-            header('Location: ../modificar-pokemon.php?id='.$id.'&modificar=img-error');
+            header('Location: '.BASE_URL.'modificar-pokemon.php?id='.$id.'&modificar=img-error');
             exit();
         }
     }
 
-    header('Location: ../modificar-pokemon.php?id='.$id.'&modificar=completa');
+    header('Location: '.BASE_URL.'modificar-pokemon.php?id='.$id.'&modificar=completa');
     exit();
 
 } else {
-    header('Location: ../modificar-pokemon.php?id='.$id.'&modificar=incompleta');
+    header('Location: '.BASE_URL.'modificar-pokemon.php?id='.$id.'&modificar=incompleta');
     exit();
 }

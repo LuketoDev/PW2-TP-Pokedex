@@ -1,4 +1,5 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'].'/TP-Pokedex/configRutas.php';
 require_once 'MyDatabase.php';
 
 $database = new MyDatabase();
@@ -13,13 +14,13 @@ if(trim($_POST["username"]) != "" && trim($_POST["password"]) != ""){
 
         $database->executeQuery("INSERT INTO administrador (username, password) VALUES ('$username', '$password')");
 
-        header('Location: ../registrarse.php?registro=correcto');
+        header('Location: '.BASE_URL.'registrarse.php?registro=correcto');
         exit();
     }else{
-        header('Location: ../registrarse.php?registro=incorrecto');
+        header('Location: '.BASE_URL.'registrarse.php?registro=incorrecto');
         exit();
     }
 }else{
-    header('Location: ../registrarse.php?registro=incompleto');
+    header('Location: '.BASE_URL.'registrarse.php?registro=incompleto');
     exit();
 }
