@@ -1,19 +1,26 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/TP-Pokedex/configRutas.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/TP-Pokedex/scripts/MyDatabase.php';
 
 if (!isset($_GET["busqueda"]) || trim($_GET["busqueda"]) === ""){
     header("Location: ".BASE_URL."/index.php");
     exit();
 }
 
+$database = new MyDatabase();
+
 $busqueda = trim($_GET["busqueda"]);
+$tiposDePokemon = array_column($database->selectQuery("SELECT tipo FROM pokemon"), 'tipo'); //el array column hace que no tenga que acceder a los valores por indice y luego acceder al campo, sino que ya directamente me da el valor del campo
 
-$tipos = array("PLANTA", "FUEGO", "AGUA", "ELECTRICO");// hacerlo con la base de datos sql
-
-if (in_array(strtoupper($busqueda), $tipos)) {
+if (in_array(strtoupper($busqueda), $tiposDePokemon)){
     header("Location: ".BASE_URL."index.php?tipo=".urlencode(strtoupper($busqueda)));
     exit();
 }
+
+//if (in_array(strtoupper($busqueda), $tipos)) {
+//    header("Location: ".BASE_URL."index.php?tipo=".urlencode(strtoupper($busqueda)));
+//    exit();
+//}
 
 if (is_numeric($busqueda)){
     header("Location: ".BASE_URL."index.php?identificador_numerico=".urlencode($busqueda));

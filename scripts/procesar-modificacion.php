@@ -8,16 +8,17 @@ $id = $_GET['id'];
 
 // pasar a variables boolean
 
-$hayAlgunDato = (isset($_POST["nombre"]) && trim($_POST["nombre"]) !== '') ||
-    (isset($_POST["identificador_numerico"]) && trim($_POST["identificador_numerico"]) !== '') ||
-    (isset($_POST["tipo"]) && trim($_POST["tipo"]) !== '') ||
-    (isset($_POST["descripcion"]) && trim($_POST["descripcion"]) !== '') ||
-    (isset($_FILES["imagen"]) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK);
+$ingresoNombre = isset($_POST["nombre"]) && trim($_POST["nombre"]) !== '';
+$ingresoIdentificadorNumerico = isset($_POST["identificador_numerico"]) && trim($_POST["identificador_numerico"]) !== '';
+$ingresoTipo = isset($_POST["tipo"]) && trim($_POST["tipo"]) !== '';
+$ingresoDescripcion = isset($_POST["descripcion"]) && trim($_POST["descripcion"]) !== '';
+$ingresoImagen = isset($_FILES["imagen"]) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK;
 
+$hayAlgunDato = $ingresoImagen || $ingresoIdentificadorNumerico || $ingresoTipo || $ingresoDescripcion || $ingresoImagen;
 
-if ( $hayAlgunDato ) {
+if ($hayAlgunDato) {
 
-    if (isset($_POST["nombre"]) && trim($_POST["nombre"]) != ""){
+    if ($ingresoNombre){
         $nombre = trim($_POST["nombre"]);
         $pokemonsConNombreRepetido = $database->selectQuery("SELECT * FROM pokemon WHERE nombre = '$nombre'");
         if (count($pokemonsConNombreRepetido) === 0){
@@ -29,7 +30,7 @@ if ( $hayAlgunDato ) {
         }
     }
 
-    if (isset($_POST["identificador_numerico"]) && trim($_POST["identificador_numerico"]) != ""){
+    if ($ingresoIdentificadorNumerico){
         $identificador_numerico = trim($_POST["identificador_numerico"]);
         $pokemonsConIdentificadorNumericoRepetido = $database->selectQuery("SELECT * FROM pokemon WHERE identificador_numerico = '$identificador_numerico'");
         if (count($pokemonsConIdentificadorNumericoRepetido) === 0){
@@ -41,7 +42,7 @@ if ( $hayAlgunDato ) {
         }
     }
 
-    if (isset($_POST["tipo"]) && trim($_POST["tipo"]) != ""){
+    if ($ingresoTipo){
         $tipo = trim($_POST["tipo"]);
         $tiposDePokemon = array_column($database->selectQuery("SELECT tipo FROM pokemon"), 'tipo'); //el array column hace que no tenga que acceder a los valores por indice y luego acceder al campo, sino que ya directamente me da el valor del campo
         if (in_array($tipo, $tiposDePokemon)){
@@ -53,12 +54,12 @@ if ( $hayAlgunDato ) {
         }
     }
 
-    if (isset($_POST["descripcion"]) && $_POST["descripcion"] != ""){
+    if ($ingresoDescripcion){
         $descripcion = trim($_POST["descripcion"]);
         $database->executeQuery("UPDATE pokemon SET descripcion = '$descripcion' WHERE id = $id");
     }
 
-    if (isset($_FILES["imagen"]) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK){
+    if ($ingresoImagen){
 
         $archivoTemporal = $_FILES["imagen"]["tmp_name"];
         $esImagen = getimagesize($archivoTemporal);

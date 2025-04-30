@@ -2,7 +2,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/TP-Pokedex/configRutas.php';
 require_once ("MyDatabase.php");
 function cargarTabla(){
-    $database = new MyDatabase('localhost:3307', 'root', '', 'pokedex');
+    $database = new MyDatabase();
 
     $query = '';
 
