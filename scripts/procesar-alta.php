@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'].'configRutas.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/configRutas.php';
 require_once ROOT_PATH.'scripts/MyDatabase.php';
 
 $database = new MyDatabase();

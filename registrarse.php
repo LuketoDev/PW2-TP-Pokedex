@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'configRutas.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/configRutas.php';
 function evaluarRegistro(){
 
     if(isset($_GET['registro'])){

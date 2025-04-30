@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'configRutas.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/configRutas.php';
 session_start();
 session_destroy();
 
