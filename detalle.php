@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/TP-Pokedex/configRutas.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'configRutas.php';
 require_once(ROOT_PATH."scripts/cargarTabla.php");
 require_once(ROOT_PATH."scripts/cargarDetallePokemon.php");
 require_once(ROOT_PATH."fragmentos/header.php");
