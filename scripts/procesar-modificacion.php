@@ -1,6 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/TP-Pokedex/configRutas.php';
-require_once 'MyDatabase.php';
+require_once ROOT_PATH.'scripts/MyDatabase.php';
 
 $database = new MyDatabase();
 
@@ -14,7 +14,7 @@ $ingresoTipo = isset($_POST["tipo"]) && trim($_POST["tipo"]) !== '';
 $ingresoDescripcion = isset($_POST["descripcion"]) && trim($_POST["descripcion"]) !== '';
 $ingresoImagen = isset($_FILES["imagen"]) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK;
 
-$hayAlgunDato = $ingresoImagen || $ingresoIdentificadorNumerico || $ingresoTipo || $ingresoDescripcion || $ingresoImagen;
+$hayAlgunDato = $ingresoNombre || $ingresoIdentificadorNumerico || $ingresoTipo || $ingresoDescripcion || $ingresoImagen;
 
 if ($hayAlgunDato) {
 
@@ -68,12 +68,12 @@ if ($hayAlgunDato) {
 
             // borro imagen anterior
             $imagenAnterior = $database->selectQuery("SELECT imagen FROM pokemon WHERE id = $id");
-            if (file_exists($_SERVER['DOCUMENT_ROOT'].'/Pokedex-TP/'.$imagenAnterior[0]['imagen']))
-                unlink($_SERVER['DOCUMENT_ROOT'].'/Pokedex-TP/'.$imagenAnterior[0]['imagen']);
+            if (file_exists(ROOT_PATH.$imagenAnterior[0]['imagen']))
+                unlink(ROOT_PATH.$imagenAnterior[0]['imagen']);
 
             //subo la nueva
             $nuevoNombre = pathinfo($_FILES["imagen"]['name'], PATHINFO_FILENAME) . '_' . time() . '.png'; // le agrego el tiempo actual para que no se haya conflicto por si se sube alguna con mismo nombre
-            $destino = $_SERVER['DOCUMENT_ROOT'].'/TP-Pokedex/imagenes/pokemon/'. $nuevoNombre;
+            $destino = ROOT_PATH.'imagenes/pokemon/'.$nuevoNombre;
             move_uploaded_file($archivoTemporal, $destino);
 
             $database->executeQuery("UPDATE pokemon SET imagen = 'imagenes/pokemon/$nuevoNombre' WHERE id = $id");

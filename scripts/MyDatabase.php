@@ -8,7 +8,7 @@ class MyDatabase
     {
         if ($localhost === null && $username === null && $password === null && $database === null){
 
-            $config = parse_ini_file($_SERVER['DOCUMENT_ROOT'].'/TP-Pokedex/db/database.ini');
+            $config = parse_ini_file(ROOT_PATH.'db/database.ini');
 
             $this->database = new mysqli(
                 $config['host'],

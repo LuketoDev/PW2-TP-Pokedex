@@ -1,7 +1,7 @@
 <?php
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/TP-Pokedex/configRutas.php';
-require_once 'MyDatabase.php';
+require_once ROOT_PATH.'scripts/MyDatabase.php';
 
 $database = new MyDatabase();
 
@@ -30,19 +30,19 @@ if ($estanTodosLosDatos
 
 
     // filtros para determinar error si es que lo hay
-    if (count($pokemonsConNombreRepetido) !== 0) $parametroError .= "nombre-repetido";
+    if (count($pokemonsConNombreRepetido) > 0) $parametroError .= "nombre-repetido";
     else if (count($pokemonsConIdentificadorNumericoRepetido) !== 0) $parametroError .= "numero-repetido";
     else if (!in_array($tipo, $tiposDePokemon)) $parametroError .= "tipo-incorrecto";
     else if ($esImagen === false) $parametroError.="img-error";
 
     if ($parametroError !== ''){ // si hay error entonces recargar pagina con error
-        header("Location: ".BASE_URL."scripts/alta-pokemon.php?alta=".$parametroError);
+        header("Location: ".BASE_URL."alta-pokemon.php?alta=".$parametroError);
         exit();
     }
 
     // subimos imagen
     $nuevoNombre = pathinfo($_FILES["imagen"]['name'], PATHINFO_FILENAME).'_'.time().'.png'; // le agrego el tiempo actual para que no se haya conflicto por si se sube alguna con mismo nombre
-    $destino = $_SERVER['DOCUMENT_ROOT'].'/TP-Pokedex/imagenes/pokemon/'.$nuevoNombre;
+    $destino = ROOT_PATH.'imagenes/pokemon/'.$nuevoNombre;
     move_uploaded_file($archivoTemporal, $destino);
 
     // hacemos el insert en la tabla

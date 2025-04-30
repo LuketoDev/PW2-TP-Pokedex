@@ -1,6 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/TP-Pokedex/configRutas.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/TP-Pokedex/scripts/MyDatabase.php';
+require_once ROOT_PATH.'scripts/MyDatabase.php';
 
 if (!isset($_GET["busqueda"]) || trim($_GET["busqueda"]) === ""){
     header("Location: ".BASE_URL."/index.php");

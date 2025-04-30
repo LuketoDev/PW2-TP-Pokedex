@@ -1,7 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/TP-Pokedex/configRutas.php';
-require_once("./fragmentos/header.php");
-require_once("./scripts/cargarPokemon.php");
+require_once(ROOT_PATH."fragmentos/header.php");
+require_once(ROOT_PATH."scripts/cargarPokemon.php");
 
 function evaluarModificacion(){
 
